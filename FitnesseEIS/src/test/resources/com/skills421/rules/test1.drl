@@ -1,0 +1,18 @@
+package com.skills421.rules
+ 
+import com.skills421.model.Person
+import java.util.List
+ 
+dialect "mvel"
+
+global List OUTPUTLIST
+ 
+/*
+ * This rule checks that a person is >= 21
+ */
+rule "Person is 21"
+    when
+        $person : Person(age>=21)               
+    then
+        OUTPUTLIST.add(String.format("%s %s",$person.firstname,$person.lastname));
+end
